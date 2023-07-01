@@ -18,8 +18,38 @@ export class ContactManagerService {
   public addContact(contact: Contact) {
     this.contactList.push(contact);
     this.contactListBehaviorSubject.next(this.contactList);
+    try {
+      localStorage.setItem("ContactList", JSON.stringify(this.contactList));
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
+  public getListFromLocalStorage() {
+
+    const stringFromLocalStorage = localStorage.getItem("ContactList");
+    if (stringFromLocalStorage) {
+      const arrayFromLocalStorage = JSON.parse(stringFromLocalStorage);
+      if (Array.isArray(arrayFromLocalStorage)) {
+        this.contactList = arrayFromLocalStorage;
+        this.syncContactList();
+      }
+
+    }
+
+
+  }
+
+  private syncContactList() {
+    this.contactListBehaviorSubject.next(this.contactList);
+    try {
+      localStorage.setItem("ContactList", JSON.stringify(this.contactList));
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
 
-  constructor() { }
 }

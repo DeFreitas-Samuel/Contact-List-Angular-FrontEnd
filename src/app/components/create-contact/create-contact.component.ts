@@ -28,7 +28,7 @@ export class CreateContactComponent {
   public onCreateContact() {
     const contactToCreate = this.convertFormToContactObject(this.contactForm);
     this.contactManagerService.addContact(contactToCreate);
-
+    this.contactForm.reset();
   }
 
   public get contactNumbers() {

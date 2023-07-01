@@ -5,8 +5,19 @@
     <label for="last-name">Last Name: </label>
     <input id="last-name" type="text" formControlName="lastName">
 
-    <label for="contact-number">Contact Number: </label>
-    <input id="contact-number" type="text" formControlName="contactNumber">
+
+    <div formArrayName="contactNumbers">
+        <div *ngFor="let contact of contactNumbers.controls; let i=index">
+            <label for="contact-number-{{i+1}}">Contact Number {{i+1}}: </label>
+            <input id="contact-number-{{i+1}}" type="text" [formControlName]="i">
+        </div>
+        <button type="button" (click)="onAddNewContactNumber()">Add a new contact Number</button>
+        <button [disabled]="contactNumbers.length < 2" type="button" (click)="onRemoveLastContactNumber()">Remove
+            a
+            contact Number</button>
+    </div>
+
+
 
     <button type="submit" [disabled]="!contactForm.valid">Create new contact</button>
 </form>

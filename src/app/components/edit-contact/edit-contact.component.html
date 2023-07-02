@@ -1,0 +1,36 @@
+<button (click)="onGoToList()">Go to the contact list</button>
+<div *ngIf="validUser; else notValidUser">
+    <h2>Modify this contact</h2>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSaveModification()">
+        <div class="form-container">
+            <label for="first-name">First Name: </label>
+            <input id="first-name" type="text" formControlName="firstName">
+        </div>
+
+        <div class="form-container">
+            <label for="last-name">Last Name: </label>
+            <input id="last-name" type="text" formControlName="lastName">
+        </div>
+        <div formArrayName="contactNumbers">
+            <div *ngFor="let contact of contactNumbers.controls; let i=index" class="form-container">
+                <label for="contact-number-{{i+1}}">Contact Number {{i+1}}: </label>
+                <input id="contact-number-{{i+1}}" type="text" [formControlName]="i">
+            </div>
+            <div class="form-container">
+                <button class="button" type="button" (click)="onAddNewContactNumber()">Add a new contact Number</button>
+                <button class="button" type="button" [disabled]="contactNumbers.length < 2"
+                    (click)="onRemoveLastContactNumber()">
+                    Remove a contact Number</button>
+            </div>
+
+        </div>
+
+
+
+        <button type="submit" [disabled]="!contactForm.valid">Save</button>
+    </form>
+</div>
+<ng-template #notValidUser>
+    <h2>The user introduced could not be found</h2>
+</ng-template>

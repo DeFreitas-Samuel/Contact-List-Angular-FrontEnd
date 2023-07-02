@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContactManagerService } from 'src/app/services/contact-manager.service';
 import { Contact } from 'src/models/contact';
@@ -20,7 +20,6 @@ export class ContactListComponent implements OnInit {
   }
 
   private bootstrap() {
-    this.contactManagerService.getListFromLocalStorage();
     this.contactList$ = this.contactManagerService.contactList$;
   }
 

@@ -16,6 +16,7 @@ export class ContactDetailComponent {
 
 
   public onEditContact() {
-
+    console.log('noche');
+    this.router.navigate(['./modify-contact', this.index]);
   }
 }

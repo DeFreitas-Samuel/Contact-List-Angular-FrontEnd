@@ -15,7 +15,7 @@ export class ContactManagerService {
     return this.contactListBehaviorSubject.asObservable();
   }
 
-  public addContact(contact: Contact) {
+  public addContact(contact: Contact): void {
     this.contactList.push(contact);
     this.contactListBehaviorSubject.next(this.contactList);
     try {
@@ -26,12 +26,20 @@ export class ContactManagerService {
     }
   }
 
-  public modifyContact(modifiedContact: Contact, index: number) {
+  public getSpecificContact(id: number): Contact | null {
+    const foundContactList = this.contactList[id];
+    if (foundContactList) {
+      return foundContactList;
+    }
+    return null;
+  }
+
+  public modifyContact(modifiedContact: Contact, index: number): void {
     this.contactList[index] = modifiedContact;
     this.syncContactList();
   }
 
-  public getListFromLocalStorage() {
+  public getListFromLocalStorage(): void {
 
     const stringFromLocalStorage = localStorage.getItem("ContactList");
     if (stringFromLocalStorage) {
@@ -40,13 +48,10 @@ export class ContactManagerService {
         this.contactList = arrayFromLocalStorage;
         this.syncContactList();
       }
-
     }
-
-
   }
 
-  private syncContactList() {
+  private syncContactList(): void {
     this.contactListBehaviorSubject.next(this.contactList);
     try {
       localStorage.setItem("ContactList", JSON.stringify(this.contactList));

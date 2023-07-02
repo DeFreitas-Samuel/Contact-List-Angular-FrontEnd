@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   }
 
   private bootstrap() {
-    this.contactManagerService.getListFromLocalStorage();
+    this.contactManagerService.getListFromStorage();
   }
 
 }

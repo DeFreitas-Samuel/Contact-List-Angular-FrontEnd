@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Contact } from 'src/models/contact';
@@ -10,6 +11,7 @@ export class ContactManagerService {
   private contactList: Contact[] = [];
   private contactListBehaviorSubject: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>(this.contactList);
 
+  constructor(private http: HttpClient) { }
 
   public get contactList$(): Observable<Contact[]> {
     return this.contactListBehaviorSubject.asObservable();
@@ -39,7 +41,7 @@ export class ContactManagerService {
     this.syncContactList();
   }
 
-  public getListFromLocalStorage(): void {
+  public getListFromStorage(): void {
 
     const stringFromLocalStorage = localStorage.getItem("ContactList");
     if (stringFromLocalStorage) {
@@ -48,6 +50,9 @@ export class ContactManagerService {
         this.contactList = arrayFromLocalStorage;
         this.syncContactList();
       }
+    }
+    else {
+      this.getListFromJSON();
     }
   }
 
@@ -59,6 +64,17 @@ export class ContactManagerService {
     catch (error) {
       console.error(error);
     }
+  }
+
+  public getListFromJSON() {
+    this.http.get('http://localhost:4200/assets/contacts.json').subscribe({
+      next: (contactListStored) => {
+        this.contactList = contactListStored as Contact[];
+        this.syncContactList();
+      }, error: (error) => {
+        console.error('There was an error fetching the JSON', error);
+      }
+    })
   }
 
 

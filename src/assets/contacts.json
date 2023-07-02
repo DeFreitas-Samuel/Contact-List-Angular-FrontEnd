@@ -1,0 +1,52 @@
+[
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "contactNumbers": ["1234567890", "9876543210", "5555555555"]
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "contactNumbers": ["1111111111", "2222222222"]
+    },
+    {
+      "firstName": "Mike",
+      "lastName": "Johnson",
+      "contactNumbers": ["3333333333"]
+    },
+    {
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "contactNumbers": ["4444444444", "6666666666", "7777777777"]
+    },
+    {
+      "firstName": "David",
+      "lastName": "Davis",
+      "contactNumbers": ["8888888888", "9999999999"]
+    },
+    {
+      "firstName": "Amy",
+      "lastName": "Wilson",
+      "contactNumbers": ["0123456789"]
+    },
+    {
+      "firstName": "Mark",
+      "lastName": "Taylor",
+      "contactNumbers": ["9876543210"]
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Johnson",
+      "contactNumbers": ["5555555555"]
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Clark",
+      "contactNumbers": ["1234567890", "9876543210"]
+    },
+    {
+      "firstName": "Laura",
+      "lastName": "Anderson",
+      "contactNumbers": ["2222222222", "3333333333", "4444444444"]
+    }
+  ]

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contact } from 'src/models/contact';
 
 @Component({
@@ -9,4 +10,12 @@ import { Contact } from 'src/models/contact';
 export class ContactDetailComponent {
 
   @Input() contact: Contact | undefined;
+  @Input() index: number | undefined;
+
+  constructor(private router: Router) { }
+
+
+  public onEditContact() {
+
+  }
 }

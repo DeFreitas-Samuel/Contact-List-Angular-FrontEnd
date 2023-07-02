@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ContactManagerService } from 'src/app/services/contact-manager.service';
 import { Contact } from 'src/models/contact';
 
@@ -22,13 +23,14 @@ export class CreateContactComponent {
 
 
 
-  public constructor(private fb: FormBuilder, private contactManagerService: ContactManagerService) { }
+  public constructor(private fb: FormBuilder, private contactManagerService: ContactManagerService, private router: Router) { }
 
 
   public onCreateContact() {
     const contactToCreate = this.convertFormToContactObject(this.contactForm);
     this.contactManagerService.addContact(contactToCreate);
     this.contactForm.reset();
+
   }
 
   public get contactNumbers() {
@@ -49,6 +51,10 @@ export class CreateContactComponent {
 
   private convertFormToContactObject(contactForm: FormGroup): Contact {
     return contactForm.value as Contact;
+  }
+
+  public onGoToList() {
+    this.router.navigate(['./list'])
   }
 
 }

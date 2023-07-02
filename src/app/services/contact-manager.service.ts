@@ -26,6 +26,11 @@ export class ContactManagerService {
     }
   }
 
+  public modifyContact(modifiedContact: Contact, index: number) {
+    this.contactList[index] = modifiedContact;
+    this.syncContactList();
+  }
+
   public getListFromLocalStorage() {
 
     const stringFromLocalStorage = localStorage.getItem("ContactList");

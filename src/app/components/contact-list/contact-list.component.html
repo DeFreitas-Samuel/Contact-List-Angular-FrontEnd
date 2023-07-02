@@ -1,6 +1,8 @@
+<button (click)="onCreateNewContact()">Create a new Contact</button>
 <div *ngIf="contactList$|async as contactList; else loading">
     <div *ngIf="contactList.length > 0; else emptyList">
-        <app-contact-detail *ngFor="let contact of contactList" [contact]="contact"></app-contact-detail>
+        <app-contact-detail *ngFor="let contact of contactList; let i=index" [contact]="contact"
+            [index]="i"></app-contact-detail>
     </div>
     <ng-template #emptyList>
         <p>There are not contacts in your list yet!</p>

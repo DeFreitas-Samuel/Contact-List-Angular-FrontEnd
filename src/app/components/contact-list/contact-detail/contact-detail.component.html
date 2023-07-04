@@ -1,8 +1,11 @@
-<div>
-    <p>{{contact?.firstName}}</p>
-    <p>{{contact?.lastName}}</p>
+<div class="contact-container">
+    <p>First name: {{contact?.firstName}}</p>
+    <p>Last name: {{contact?.lastName}}</p>
     <h5>Contact Numbers</h5>
-    <p *ngFor="let number of contact?.contactNumbers">{{number}}</p>
+    <ul>
+        <li *ngFor="let number of contact?.contactNumbers">{{number}}</li>
+    </ul>
+
 
     <button (click)="onEditContact()">Edit this contact</button>
 </div>
